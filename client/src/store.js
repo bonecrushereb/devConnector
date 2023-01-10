@@ -19,8 +19,9 @@ let currentState = store.getState();
 store.subscribe(() => {
   let previousState = currentState;
   currentState = store.getState();
+  console.log(currentState)
   if (previousState.authReducer.token !== currentState.authReducer.token) {
-    const token = currentState.auth.token;
+    const token = currentState.authReducer.token;
     setAuthToken(token);
   }
 })
