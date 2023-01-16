@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import api from '../utils/api';
 import {setAlert} from './alert';
 
@@ -20,5 +21,31 @@ export const getCurrentProfile = () => async dispatch => {
             type: PROFILE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
         })
+    }
+}
+
+// Create or Update profile
+export const createProfile = (formData, history, edit = false) => async dispatch => {
+    try {
+        const res = await api.post('/api/profile', formData);
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
+
+        if(!edit) {
+            Navigate('/dashboard');
+        }
+    } catch (err) {
+        const errors = err.response.data.errors;
+        if(errors) {
+          errors.forEach(err => dispatch(setAlert(err.msg, 'danger')))
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+            })
+        }
     }
 }
