@@ -5,7 +5,6 @@ import {setAlert} from './alert';
 import {
     GET_PROFILE,
     PROFILE_ERROR,
-    CLEAR_PROFILE
 } from './types';
 
 //Get current users profile
@@ -25,7 +24,7 @@ export const getCurrentProfile = () => async dispatch => {
 }
 
 // Create or Update profile
-export const createProfile = (formData, history, edit = false) => async dispatch => {
+export const createProfile = (formData, navigate, edit = false) => async dispatch => {
     try {
         const res = await api.post('/api/profile', formData);
         dispatch({
@@ -33,10 +32,10 @@ export const createProfile = (formData, history, edit = false) => async dispatch
             payload: res.data
         })
 
-        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
+        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
         if(!edit) {
-            Navigate('/dashboard');
+            navigate('/dashboard');
         }
     } catch (err) {
         const errors = err.response.data.errors;
