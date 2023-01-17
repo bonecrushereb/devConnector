@@ -44,7 +44,7 @@ const CreateProfile = ({ createProfile }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        createProfile(formData, navigate)
+        createProfile(formData, navigate);
     }
   return (
 <section className="container">
@@ -74,7 +74,7 @@ const CreateProfile = ({ createProfile }) => {
           >
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Company" name="company" value={company} onChange={e => onChange}/>
+          <input type="text" placeholder="Company" name="company" value={company} onChange={e => onChange(e)}/>
           <small className="form-text"
             >Could be your own company or one you work for</small
           >
