@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import DashboardActions from './DashboardActions';
+import Experience from './Experience';
+import Education from './Education';
 
 const Dashboard = ({getCurrentProfile, auth: { user }, profile: { profile }}) => {
   useEffect(() => {
@@ -19,6 +21,8 @@ const Dashboard = ({getCurrentProfile, auth: { user }, profile: { profile }}) =>
       {profile !== null ? (
       <section>
         <DashboardActions />
+        <Experience experience={profile.experience}/>
+        <Education education={profile.education}/>
       </section>
       ) : (
       <section>
