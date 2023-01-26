@@ -151,6 +151,7 @@ router.get('/user/:user_id', async (req, res) => {
     });
     res.status(500).send('Server Error');
   }
+  });
 
   //@Route Delete api/profile
   //@desc delete profile, user and posts
@@ -175,7 +176,7 @@ router.get('/user/:user_id', async (req, res) => {
     }
 
   });
-});
+
 
 //@Route Put api/profile/experience
 //@desc Add profile experience
