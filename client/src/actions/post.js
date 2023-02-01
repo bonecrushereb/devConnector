@@ -7,7 +7,6 @@ import {
 
 //Get posts
 export const getPosts = () => async (dispatch) => {
-  console.log('calling posts');
   try {
     const res = await api.get('/api/posts');
 
